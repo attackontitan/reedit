@@ -1,0 +1,36 @@
+<%= javascript_include_tag :defaults %>
+
+<h1><%= @hearder_text%></h1>
+<%= link_to "HOT", {:action => 'submissions', :order => 'hot'} %> |
+<%= link_to "NEW", {:action => 'submissions', :order => 'new'} %> |
+<%= link_to 'Add new link', :action => 'new'%>
+
+<% unless @links.nil? %>
+<table>
+<% for link in @links %>
+	<tr valign = 'top'>
+		<td>
+		<%= link_to_remote "UP", :url => {:action => 'modify_points',
+					 :id => link.id,
+					 :by => 1},
+					 :update => "link" + link.id.to_s %>
+
+		</td>
+		<td>
+		<%= link_to_remote "DOWN", :url => {:action => 'modify_points',
+					 :id => link.id,
+					 :by => -1},
+					 :update => "link" + link.id.to_s %>
+
+		</td>
+		<td>
+		<b><a href="<%= link.url %>"> <%= link.description %> </a></b>
+		(<%= if link.url =~ /(:\/\/)[^\/]*/ then $2 else "wrong URL" end %>)</br>
+		<span id = "link<%= link.id.to_s %>"> <%= link.points %></span>
+		points posted <%= time_ago_in_words link.create_at %> ago
+		</td>
+<% end %>
+</table>
+<% else %>
+No submisssions yet
+<% end %>

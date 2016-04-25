@@ -18,7 +18,7 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
-gem "will_paginate", "~> 3.0.4" 
+  gem "will_paginate", "~> 3.0.4"
 end
 
 gem 'jquery-rails'
@@ -41,3 +41,5 @@ gem 'jquery-rails'
 gem 'execjs'
 
 gem 'therubyracer'
+
+gem 'test-unit'

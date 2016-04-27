@@ -82,12 +82,14 @@ class LinksController < ApplicationController
   end
 
   def submissions
+	#@links = Link.find_all
 	ordering = params[:order] || 'hot'
 	order = case ordering
 		when 'hot' then 'points DESC'
 		when 'new' then 'created_at DESC'
 		end
 #	@link_pages, @links = paginate :links, :order=> order, :per_page => 20
+	@links = Link.paginate(:page => params[:page], :per_page => 20)
 	@hearder_text = case ordering
 			when 'hot' then 'Top rated submissions'
 			when 'new' then 'Latest submissions'

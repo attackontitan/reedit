@@ -1,7 +1,11 @@
 Reedit::Application.routes.draw do
-  match 'links/submissions' => 'links#submissions'
-  resources :links
-
+  # match 'links/submissions' => 'links#submissions'
+  resources :links do
+	collection do
+		get 'submissions'
+	end
+  end
+	
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
